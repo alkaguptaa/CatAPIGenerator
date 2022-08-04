@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/assests/bootstrap.min.css" />
+        <title>Cats Pic Generator</title>
+
+        <style>
+            img{
+                width: 20%;
+            }
+
+            .showcase{
+                width: 60%;
+            }
+        </style>
+
+    </head>
+    <body class="jumbotron text-center">
+        <h1> Cat Pics Generator </h1>
+
+
+    <div id="result">
+    </div>
+    <button onclick="cat()"> Generate Cat Images </button>  
+    <script>
+function cat(){
+        var link =`https://api.thecatapi.com/v1/images/search`;
+           fetch(link)
+           .then((response) => {
+            return response.json();
+
+           })
+
+           .then((data) =>{
+            console.log(data);
+            var url=data[0].url;
+            var img="<img src='"+url+"' height=200 width=300 />" ;
+            document.getElementById('result').innerHTML=img;
+           });
+
+        }
+
+    </script>  
+    </body>
+</html>
